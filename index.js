@@ -2,15 +2,21 @@
  * @format
  */
 
-import {AppRegistry} from 'react-native';
+import {AppRegistry, LogBox, StatusBar, View} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-const ProductTracking = () => {
+import {Provider} from 'react-redux';
+import {store} from './src/store';
+
+StatusBar.setHidden(true, 'none');
+LogBox.ignoreAllLogs();
+
+const AppInit = () => {
   return (
-    <GestureHandlerRootView style={{flex: 1, flexGrow: 1}}>
+    <Provider store={store}>
       <App />
-    </GestureHandlerRootView>
+    </Provider>
   );
 };
-AppRegistry.registerComponent(appName, () => ProductTracking);
+
+AppRegistry.registerComponent(appName, () => AppInit);

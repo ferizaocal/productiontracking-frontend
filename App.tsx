@@ -1,16 +1,16 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import SignInScreen from './src/screens/Login/Login';
-import AuthNavigator from './src/navigation/AuthNavigator';
 import {NavigationContainer} from '@react-navigation/native';
-import DrawerNavigator from './src/navigation/DrawerNavigator';
+import DrawerNavigator from './src/navigation/Drawer/DrawerNavigator';
+import {useSelector} from 'react-redux';
+import {AppState} from './src/store';
+import AuthNavigator from './src/navigation/AuthNavigator';
 
-const App = () => {
+export default function App() {
+  const {user} = useSelector((state: AppState) => state.auth);
+
   return (
     <NavigationContainer>
-      <DrawerNavigator />
+      {user != null ? <DrawerNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
-};
-
-export default App;
+}
