@@ -61,7 +61,7 @@ const en = {
 
   profilescreen_title: 'Profil',
 
-  usersscreen_title: 'Kullanıcılar',
+  rolesscreen_title: 'Roller',
 
   orderscreen_title: 'Siparişler',
 

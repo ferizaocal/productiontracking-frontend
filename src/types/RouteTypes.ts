@@ -6,8 +6,9 @@ const RouteTypes = {
   PROFILE_SCREEN: 'ProfileScreen',
   MATERIALS_SCREEN: 'MaterialsScreen',
   ORDERS_SCREEN: 'OrdersScreen',
-  USERS_SCREEN: 'UsersScreen',
+  ROLES_SCREEN: 'RolesScreen',
   CONFIRMATION_SCREEN: 'ConfirmationScreen',
+  ADD_USER_SCREEN: 'AddUser',
 
   MAIN_BOTTOM_TAB: 'MainBottomTab',
   HOME_BOTTOM_TAB: 'HomeBottomTab',

@@ -61,7 +61,7 @@ const zh = {
 
   profilescreen_title: '个人资料',
 
-  usersscreen_title: '用户',
+  rolesscreen_title: '用户',
 
   orderscreen_title: '订单',
 

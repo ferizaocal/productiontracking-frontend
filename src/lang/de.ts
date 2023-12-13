@@ -61,7 +61,7 @@ const de = {
 
   profilescreen_title: 'Profil',
 
-  usersscreen_title: 'Benutzer',
+  rolesscreen_title: 'Benutzer',
 
   orderscreen_title: 'Bestellungen',
 

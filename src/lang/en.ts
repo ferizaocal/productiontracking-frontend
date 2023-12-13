@@ -9,7 +9,7 @@ const en = {
   forgotpasswordscreen_back: 'Back',
   forgotpasswordscreen_button: 'Send',
 
-  drawercontentscreen_users: 'Users',
+  drawercontentscreen_users: 'Roles',
   drawercontentscreen_orders: 'Orders',
   drawercontentscreen_confirmation: 'Confirmation',
   drawercontentscreen_shipment: 'Shipment',
@@ -62,7 +62,7 @@ const en = {
 
   profilescreen_title: 'Profile',
 
-  usersscreen_title: 'Users',
+  rolesscreen_title: 'Roles',
 
   orderscreen_title: 'Orders',
 

@@ -20,10 +20,11 @@ export default function SearchBar(props: SearchBarProps) {
   const {language} = useSelector((state: AppState) => state.app);
   return (
     <View
-      style={{
-        marginLeft: 20,
-        ...(props.sx && typeof props.sx === 'object' ? props.sx : {}),
-      }}>
+      // style={{
+      //   marginLeft: 20,
+      //   ...(props.sx && typeof props.sx === 'object' ? props.sx : {}),
+      // }}
+      style={[props.sx, {marginLeft: 20}]}>
       <View style={{position: 'absolute', zIndex: 10, left: 18, top: 12}}>
         <SearchSvg />
       </View>
@@ -34,21 +35,21 @@ export default function SearchBar(props: SearchBarProps) {
         placeholder={I18n.t('homescreen_search_placeholder', {
           locale: language,
         })}
-        style={{
-          ...(props.inputStyleProps && typeof props.inputStyleProps === 'object'
-            ? props.inputStyleProps
-            : {}),
-          backgroundColor: '#fff',
-          borderColor: '#F2F2F2',
-          borderWidth: 1,
-          borderRadius: 40,
-          height: 40,
-          fontWeight: 'bold',
-          fontSize: 13,
-          color: '#999999',
-          paddingHorizontal: 43,
-          paddingVertical: 6,
-        }}
+        style={[
+          props.inputStyleProps,
+          {
+            backgroundColor: '#fff',
+            borderColor: '#F2F2F2',
+            borderWidth: 1,
+            borderRadius: 40,
+            height: 40,
+            fontWeight: 'bold',
+            fontSize: 13,
+            color: '#999999',
+            paddingHorizontal: 43,
+            paddingVertical: 6,
+          },
+        ]}
       />
     </View>
   );

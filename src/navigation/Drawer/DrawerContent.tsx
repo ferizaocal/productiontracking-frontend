@@ -86,7 +86,7 @@ const DrawerContent = memo(function MyDrawerContent(
           showsVerticalScrollIndicator={false}
           contentInset={{bottom: 50}}>
           <DrawerButton
-            onPress={() => props.navigation.navigate(RouteTypes.USERS_SCREEN)}
+            onPress={() => props.navigation.navigate(RouteTypes.ROLES_SCREEN)}
             label={I18n.t('drawercontentscreen_users', {locale: language})}
             icon={<UsersSvg />}
           />
