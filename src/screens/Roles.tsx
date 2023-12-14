@@ -4,8 +4,9 @@ import {
   SafeAreaView,
   TouchableOpacity,
   StyleSheet,
+  Pressable,
 } from 'react-native';
-import React, {memo, useState} from 'react';
+import React, {memo, useRef, useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import Label from '../components/Text/Label';
 import I18n from '../lang/_i18n';
@@ -22,10 +23,13 @@ import Col from '../components/Cols/Col';
 import RouteTypes from '../types/RouteTypes';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {CircleButton} from '../components/Buttons/CircleButton';
+import Popover from '../components/Popover/Popover';
+import CustomBottomSheet from '../components/BottomSheet/CustomBottomSheet';
 
 export default function Roles(props: any) {
   const {language} = useSelector((state: AppState) => state.app);
   const [roles, setRoles] = useState(['Kesim', 'Terzi', 'Yıkama', 'Temizlik']);
+  const [addBottomSheetShow, setAddBottomSheetShow] = useState(false);
   const handleAddUser = (data: string) => {
     props.navigation.navigate(RouteTypes.ADD_USER_SCREEN, {roleName: data});
   };
@@ -51,9 +55,10 @@ export default function Roles(props: any) {
         </View>
 
         <View style={{marginTop: 30}}>
-          {roles.map((role, index) => (
-            <ColBackground key={index}>
+          <ColBackground>
+            {roles.map((role, index) => (
               <Col
+                key={index}
                 onPress={() => {
                   handleAddUser(role);
                 }}
@@ -66,11 +71,30 @@ export default function Roles(props: any) {
                   />
                 }
               />
-            </ColBackground>
-          ))}
+            ))}
+          </ColBackground>
         </View>
       </SafeAreaView>
-      <CircleButton icon={faPlus} />
+      <CircleButton
+        onPress={() => {
+          setAddBottomSheetShow(true);
+        }}
+        icon={faPlus}
+      />
+      <CustomBottomSheet
+        handleClose={(value: boolean) => {
+          setAddBottomSheetShow(value);
+        }}
+        isOpen={addBottomSheetShow}>
+        <View></View>
+      </CustomBottomSheet>
     </View>
   );
 }
+const styles = StyleSheet.create({
+  popoverHeader: {
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+});

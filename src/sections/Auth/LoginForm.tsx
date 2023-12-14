@@ -73,7 +73,7 @@ export default function LoginForm() {
               );
             }}
             activeOpacity={0.8}
-            class="mt-[30px] w-[50%]">
+            sx={{marginTop: 30, width: '50%'}}>
             <Label
               font="Raleway-SemiBold"
               sx={{fontSize: 15, color: 'white'}}

@@ -55,7 +55,11 @@ export default function OrderCard() {
           font="Raleway-Bold"
           sx={{color: '#594E3C', fontSize: 10}}
         />
-        <Label label="001" />
+        <Label
+          label="001"
+          font="Raleway-Bold"
+          sx={{color: '#594E3C', fontSize: 10}}
+        />
       </View>
       <View style={styles.col}>
         <Label
