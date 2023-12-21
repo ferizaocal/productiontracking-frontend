@@ -12,40 +12,23 @@ import {goNavigate} from '../../utils/Helper';
 import RouteTypes from '../../types/RouteTypes';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppState} from '../../store';
-import {AuthActions} from '../../store/slice/authSlice';
 import {postLogin} from '../../utils/api';
+import {AuthActions} from '../../store/slice/authSlice';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
   const {language} = useSelector((state: AppState) => state.app);
   const navigation = useNavigation();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('ozkankocakaplan07@gmail.com');
+  const [password, setPassword] = useState('admin');
   const handleLogin = async () => {
     await postLogin(email, password)
-      .then(donenYanit => {
-        // backendde istek durumu ok ise buraya düşer
-        console.log('THENE DÜŞTÜ', donenYanit.data);
-        //şiimdi benim yapımda burada iSsuccesFul true gelmiş ve entity içimde verilerimde gelmiş gördün mü
-        //
-        if (
-          donenYanit.data.isSuccessful === true &&
-          donenYanit.data.entity != null
-        ) {
-          //GİRİŞ BAŞARILI
-          Alert.alert('Başarılı', 'Giriş Başarılı tebrikler');
-        } else {
-          Alert.alert('Başarısız', 'Eposta veya şifre yanlış');
+      .then(res => {
+        if (res.data.isSuccessful) {
+          dispatch(AuthActions.setUser(res.data.entity));
         }
       })
-      .catch(er => {
-        Alert.alert('Başarısız', 'Eposta veya şifre yanlış');
-        console.log('CATCHE DÜŞTÜ', er);
-        //hata alırsak backend tarafından buraya düşer
-      })
-      .finally(() => {
-        //BURASI DEFAULT OLARKA ÇALIŞIR YANİ HATA ALDI VEYA ALMADI YİNEDE ÇALIŞIR
-      });
+      .catch(er => {});
   };
   return (
     <View

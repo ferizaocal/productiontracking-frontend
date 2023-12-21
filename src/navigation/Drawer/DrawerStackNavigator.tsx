@@ -17,6 +17,7 @@ import Profile from '../../screens/Profile';
 import Confirmation from '../../screens/Confirmation';
 import AddUser from '../../screens/User/AddUser';
 import Users from '../../screens/User/Users';
+import Productions from '../../screens/Production/Productions';
 const DrawerNavigation = createDrawerNavigator();
 const DrawerStack = createNativeStackNavigator();
 export default function DrawerStackNavigaton() {
@@ -44,6 +45,10 @@ export default function DrawerStackNavigaton() {
         component={Settings}
       />
       <DrawerStack.Screen name={RouteTypes.REPORT_SCREEN} component={Report} />
+      <DrawerStack.Screen
+        name={RouteTypes.PRODUCTIONS_SCREEN}
+        component={Productions}
+      />
     </DrawerStack.Navigator>
   );
 }

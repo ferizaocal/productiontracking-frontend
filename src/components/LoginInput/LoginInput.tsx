@@ -18,7 +18,6 @@ interface LoginInputProps extends TextInputProps {
   iconColor?: string;
   title: string;
   sx?: StyleProp<ViewStyle>;
-  
 }
 
 export default function LoginInput({

@@ -1,8 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {AuthState} from '../AuthState';
+import LoginResponse from '../../DTO/Response/LoginResponse';
 
 const INITIAL_STATE: AuthState = {
-  user: {email: '', password: ''},
+  user: {} as LoginResponse,
   firebaseToken: null,
 };
 export const authSlice = createSlice({

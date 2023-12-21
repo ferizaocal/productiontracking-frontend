@@ -8,6 +8,7 @@ import React from 'react';
 import Label from '../Text/Label';
 
 interface ColProps extends TouchableOpacityProps {
+  leftIcon?: any;
   name?: string;
   icon: any;
 }
@@ -23,14 +24,18 @@ const Col = (props: ColProps) => {
         borderBottomColor: '#F5F5F5',
         paddingVertical: 10,
       }}>
-      <Label
-        font="Raleway-Bold"
-        sx={{
-          color: '#5F5E70',
-          fontSize: 16,
-        }}
-        label={props.name ? props.name : ''}
-      />
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        {props.leftIcon}
+        <Label
+          font="Raleway-Bold"
+          sx={{
+            marginLeft: 10,
+            color: '#5F5E70',
+            fontSize: 16,
+          }}
+          label={props.name ? props.name : ''}
+        />
+      </View>
       {props.icon}
     </TouchableOpacity>
   );

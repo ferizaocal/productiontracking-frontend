@@ -67,6 +67,7 @@ export default function Settings(props: any) {
         <ColBackground>
           {SettingList_Production({lang: language}).map((item, index) => (
             <Col
+              onPress={() => props.navigation.navigate(item.route)}
               key={index}
               name={item.name}
               icon={

@@ -3,13 +3,18 @@ import EnglishFlagSvg from '../Svg/Flags/EnglishFlagSvg';
 import GermanyFlagSvg from '../Svg/Flags/GermanyFlagSvg';
 import I18n from '../lang/_i18n';
 import ChinaFlagSvg from '../Svg/Flags/ChinaFlagSvg';
+import RouteTypes from '../types/RouteTypes';
+import BabyPijamaSvg from '../Svg/Clothes/BabyPijamaSvg';
+import TshirtSvg from '../Svg/Clothes/TshirtSvg';
 
 export const SettingList_Production = ({lang}: {lang: string}) => [
   {
     name: I18n.t('settingsscreen_productions', {locale: lang}),
+    route: RouteTypes.PRODUCTIONS_SCREEN,
   },
   {
     name: I18n.t('settingsscreen_production_agegroup', {locale: lang}),
+    route: RouteTypes.PRODUCTIONS_SCREEN,
   },
 ];
 export const SettingList_Process = ({lang}: {lang: string}) => [
@@ -39,3 +44,20 @@ export const SettingList_Language = [
     icon: <ChinaFlagSvg />,
   },
 ];
+export const Clothes = [
+  {
+    name: 'Bebek Pijama',
+    iconName: (iconColor?: string) => (
+      <BabyPijamaSvg color={iconColor ? iconColor : '#fff'} />
+    ),
+  },
+  {
+    name: 'Tişört',
+    iconName: (iconColor?: string) => (
+      <TshirtSvg color={iconColor ? iconColor : '#fff'} />
+    ),
+  },
+];
+export const getFindIconByName = (name: string, iconColor?: string) => {
+  return Clothes.find(x => x.name === name)?.iconName(iconColor);
+};

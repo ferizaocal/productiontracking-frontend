@@ -16,5 +16,7 @@ const RouteTypes = {
   FABRIC_BOTTOM_TAB: 'FabricBottomTab',
   PRODUCTIONTRACKING_BOTTOM_TAB: 'ProductionTrackingBottomTab',
   PRODUCT_BOTTOM_TAB: 'ProductBottomTab',
+
+  PRODUCTIONS_SCREEN: 'ProductionsScreen',
 };
 export default RouteTypes;
