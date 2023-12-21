@@ -1,5 +1,5 @@
-import {View, StyleSheet, TouchableOpacity} from 'react-native';
-import React from 'react';
+import {View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
+import React, {useState} from 'react';
 import LoginInput from '../../components/LoginInput/LoginInput';
 
 import Label from '../../components/Text/Label';
@@ -13,11 +13,40 @@ import RouteTypes from '../../types/RouteTypes';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppState} from '../../store';
 import {AuthActions} from '../../store/slice/authSlice';
+import {postLogin} from '../../utils/api';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
   const {language} = useSelector((state: AppState) => state.app);
   const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const handleLogin = async () => {
+    await postLogin(email, password)
+      .then(donenYanit => {
+        // backendde istek durumu ok ise buraya düşer
+        console.log('THENE DÜŞTÜ', donenYanit.data);
+        //şiimdi benim yapımda burada iSsuccesFul true gelmiş ve entity içimde verilerimde gelmiş gördün mü
+        //
+        if (
+          donenYanit.data.isSuccessful === true &&
+          donenYanit.data.entity != null
+        ) {
+          //GİRİŞ BAŞARILI
+          Alert.alert('Başarılı', 'Giriş Başarılı tebrikler');
+        } else {
+          Alert.alert('Başarısız', 'Eposta veya şifre yanlış');
+        }
+      })
+      .catch(er => {
+        Alert.alert('Başarısız', 'Eposta veya şifre yanlış');
+        console.log('CATCHE DÜŞTÜ', er);
+        //hata alırsak backend tarafından buraya düşer
+      })
+      .finally(() => {
+        //BURASI DEFAULT OLARKA ÇALIŞIR YANİ HATA ALDI VEYA ALMADI YİNEDE ÇALIŞIR
+      });
+  };
   return (
     <View
       style={{
@@ -39,14 +68,20 @@ export default function LoginForm() {
         />
         <LoginInput
           autoCapitalize="none"
-          value="example@hotmail.com"
+          value={email}
+          onChangeText={(text: string) => {
+            setEmail(text);
+          }}
           autoCorrect={false}
           svg={<EmailSvg />}
           sx={{marginBottom: 30}}
           title={I18n.t('loginscreen_email', {locale: language})}
         />
         <LoginInput
-          value="123456"
+          value={password}
+          onChangeText={(text: string) => {
+            setPassword(text);
+          }}
           secureTextEntry={true}
           svg={<PasswordSvg />}
           title={I18n.t('loginscreen_password', {locale: language})}
@@ -65,12 +100,13 @@ export default function LoginForm() {
         <View style={{alignItems: 'center'}}>
           <Button
             onPress={() => {
-              dispatch(
-                AuthActions.setUser({
-                  name: 'ferizaocal@gmail.com',
-                  password: '123456',
-                }),
-              );
+              handleLogin();
+              // dispatch(
+              //   AuthActions.setUser({
+              //     name: 'ferizaocal@gmail.com',
+              //     password: '123456',
+              //   }),
+              // );
             }}
             activeOpacity={0.8}
             sx={{marginTop: 30, width: '50%'}}>

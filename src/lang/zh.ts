@@ -9,10 +9,10 @@ const zh = {
   forgotpasswordscreen_back: '返回',
   forgotpasswordscreen_button: '发送',
 
-  drawercontentscreen_users: '用户',
+  drawercontentscreen_users: '角色',
   drawercontentscreen_orders: '订单',
   drawercontentscreen_confirmation: '确认',
-  drawercontentscreen_materials: '材料',
+
   drawercontentscreen_report: '报告',
   drawercontentscreen_settings: '设置',
   drawercontentscreen_profile: '个人资料',
@@ -62,10 +62,8 @@ const zh = {
   profilescreen_title: '个人资料',
 
   rolesscreen_title: '用户',
-
+  usersscreen_title: 'Kullanıcılar',
   orderscreen_title: '订单',
-
-  materialscreen_title: '材料',
 
   bottomtab_popover_product: '产品',
   bottomtab_popover_close: '关闭',

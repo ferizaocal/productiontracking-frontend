@@ -4,23 +4,9 @@ import GermanyFlagSvg from '../Svg/Flags/GermanyFlagSvg';
 import I18n from '../lang/_i18n';
 import ChinaFlagSvg from '../Svg/Flags/ChinaFlagSvg';
 
-export const SettingList_Materials = ({lang}: {lang: string}) => [
-  {
-    name: I18n.t('settingsscreen_material_properties', {locale: lang}),
-  },
-  {
-    name: I18n.t('settingsscreen_material_category', {locale: lang}),
-  },
-];
 export const SettingList_Production = ({lang}: {lang: string}) => [
   {
     name: I18n.t('settingsscreen_productions', {locale: lang}),
-  },
-  {
-    name: I18n.t('settingsscreen_productionfailure', {locale: lang}),
-  },
-  {
-    name: I18n.t('settingscreen_production_instruction', {locale: lang}),
   },
   {
     name: I18n.t('settingsscreen_production_agegroup', {locale: lang}),

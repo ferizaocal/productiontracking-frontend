@@ -13,7 +13,13 @@ import I18n from '../../lang/_i18n';
 import {useSelector} from 'react-redux';
 import {AppState} from '../../store';
 
-export default function OrderCard() {
+interface OrderCardProps {
+  width: string;
+}
+export default function OrderCard(props: OrderCardProps) {
+  const width = props.width
+    ? props.width
+    : Dimensions.get('window').width / 2 - 25;
   const {language} = useSelector((state: AppState) => state.app);
   return (
     <Pressable
@@ -25,7 +31,7 @@ export default function OrderCard() {
         backgroundColor: 'white',
         borderRadius: 10,
         marginRight: 10,
-        width: Dimensions.get('window').width / 2 - 25,
+        width: width,
       }}>
       <View
         style={{

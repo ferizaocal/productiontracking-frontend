@@ -11,7 +11,7 @@ import {DrawerContentComponentProps} from '@react-navigation/drawer';
 import Label from '../../components/Text/Label';
 import UsersSvg from '../../Svg/UsersSvg';
 import OrderSvg from '../../Svg/OrderSvg';
-import MaterialSvg from '../../Svg/MaterialSvg';
+
 import ReportSvg from '../../Svg/ReportSvg';
 import SettingsSvg from '../../Svg/SettingsSvg';
 import UserSvg from '../../Svg/UserSvg';
@@ -96,11 +96,6 @@ const DrawerContent = memo(function MyDrawerContent(
             icon={<OrderSvg />}
           />
           <DrawerButton
-            onPress={() => props.navigation.navigate(RouteTypes.ORDERS_SCREEN)}
-            label={I18n.t('drawercontentscreen_shipment', {locale: language})}
-            icon={<TransportSvg />}
-          />
-          <DrawerButton
             onPress={() =>
               props.navigation.navigate(RouteTypes.CONFIRMATION_SCREEN)
             }
@@ -109,13 +104,7 @@ const DrawerContent = memo(function MyDrawerContent(
             })}
             icon={<ConfirmationSvg />}
           />
-          <DrawerButton
-            onPress={() =>
-              props.navigation.navigate(RouteTypes.MATERIALS_SCREEN)
-            }
-            label={I18n.t('drawercontentscreen_materials', {locale: language})}
-            icon={<MaterialSvg />}
-          />
+
           <DrawerButton
             onPress={() => props.navigation.navigate(RouteTypes.REPORT_SCREEN)}
             label={I18n.t('drawercontentscreen_report', {locale: language})}

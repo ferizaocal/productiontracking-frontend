@@ -20,7 +20,6 @@ import {AppState} from '../store';
 import {AppActions} from '../store/slice/appSlice';
 import {
   SettingList_Language,
-  SettingList_Materials,
   SettingList_Process,
   SettingList_Production,
 } from '../utils/Data';
@@ -61,25 +60,6 @@ export default function Settings(props: any) {
             label={I18n.t('settingscreen_title', {locale: language})}
           />
         </View>
-        <ColTitle
-          marginTop={30}
-          name={I18n.t('settingsscreen_material_Title', {locale: language})}
-        />
-        <ColBackground>
-          {SettingList_Materials({lang: language}).map((item, index) => (
-            <Col
-              key={index}
-              name={item.name}
-              icon={
-                <FontAwesomeIcon
-                  icon={faAngleRight}
-                  color="#D8B267"
-                  size={25}
-                />
-              }
-            />
-          ))}
-        </ColBackground>
 
         <ColTitle
           name={I18n.t('settingsscreen_production_Title', {locale: language})}

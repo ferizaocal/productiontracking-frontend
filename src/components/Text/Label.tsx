@@ -11,7 +11,7 @@ interface LabelProps extends TextProps {
 
 export default function Label(prop: LabelProps) {
   return (
-    <Text style={[{...styles.label, fontFamily: prop.font}, prop.sx]}>
+    <Text {...prop} style={[{...styles.label, fontFamily: prop.font}, prop.sx]}>
       {prop.label}
     </Text>
   );

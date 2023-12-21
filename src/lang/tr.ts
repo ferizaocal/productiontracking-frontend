@@ -9,10 +9,10 @@ const en = {
   forgotpasswordscreen_back: 'Geri',
   forgotpasswordscreen_button: 'Gönder',
 
-  drawercontentscreen_users: 'Kullanıcılar',
+  drawercontentscreen_users: 'Roller',
   drawercontentscreen_orders: 'Siparişler',
   drawercontentscreen_confirmation: 'Onay',
-  drawercontentscreen_materials: 'Malzemeler',
+
   drawercontentscreen_report: 'Rapor',
   drawercontentscreen_settings: 'Ayarlar',
   drawercontentscreen_profile: 'Profil',
@@ -62,10 +62,8 @@ const en = {
   profilescreen_title: 'Profil',
 
   rolesscreen_title: 'Roller',
-
+  usersscreen_title: 'Kullanıcılar',
   orderscreen_title: 'Siparişler',
-
-  materialscreen_title: 'Malzemeler',
 
   bottomtab_popover_product: 'Ürünler',
   bottomtab_popover_close: 'Kapat',

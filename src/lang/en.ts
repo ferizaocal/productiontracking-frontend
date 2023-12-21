@@ -13,7 +13,7 @@ const en = {
   drawercontentscreen_orders: 'Orders',
   drawercontentscreen_confirmation: 'Confirmation',
   drawercontentscreen_shipment: 'Shipment',
-  drawercontentscreen_materials: 'Materials',
+
   drawercontentscreen_report: 'Report',
   drawercontentscreen_settings: 'Settings',
   drawercontentscreen_profile: 'Profile',
@@ -63,10 +63,9 @@ const en = {
   profilescreen_title: 'Profile',
 
   rolesscreen_title: 'Roles',
+  usersscreen_title: 'Kullanıcılar',
 
   orderscreen_title: 'Orders',
-
-  materialscreen_title: 'Materials',
 
   bottomtab_popover_product: 'Products',
   bottomtab_popover_close: 'Close',

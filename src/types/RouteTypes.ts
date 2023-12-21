@@ -4,10 +4,11 @@ const RouteTypes = {
   SETTINGS_SCREEN: 'SettingsScreen',
   REPORT_SCREEN: 'ReportScreen',
   PROFILE_SCREEN: 'ProfileScreen',
-  MATERIALS_SCREEN: 'MaterialsScreen',
+
   ORDERS_SCREEN: 'OrdersScreen',
   ROLES_SCREEN: 'RolesScreen',
   CONFIRMATION_SCREEN: 'ConfirmationScreen',
+  USERS_SCREEN: 'UsersScreen',
   ADD_USER_SCREEN: 'AddUser',
 
   MAIN_BOTTOM_TAB: 'MainBottomTab',

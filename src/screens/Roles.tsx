@@ -25,13 +25,37 @@ import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {CircleButton} from '../components/Buttons/CircleButton';
 import Popover from '../components/Popover/Popover';
 import CustomBottomSheet from '../components/BottomSheet/CustomBottomSheet';
+import {TextInput} from 'react-native-gesture-handler';
+import Button from '../components/Buttons/Default';
+import {ClothesButton} from '../components/Buttons/ClothesButton';
+import BabyPijamaSvg from '../Svg/Clothes/BabyPijamaSvg';
 
 export default function Roles(props: any) {
   const {language} = useSelector((state: AppState) => state.app);
-  const [roles, setRoles] = useState(['Kesim', 'Terzi', 'Yıkama', 'Temizlik']);
+  const [roles, setRoles] = useState([
+    'Kesim',
+    'Terzi',
+    'Yıkama',
+    'Temizlik',
+    'Ütü',
+  ]);
   const [addBottomSheetShow, setAddBottomSheetShow] = useState(false);
   const handleAddUser = (data: string) => {
-    props.navigation.navigate(RouteTypes.ADD_USER_SCREEN, {roleName: data});
+    props.navigation.navigate(RouteTypes.USERS_SCREEN, {roleName: data});
+  };
+  const [roleName, setRoleName] = useState('');
+  const [selectedProduction, setSelectedProduction] = useState({
+    name: '',
+    iconName: '',
+  });
+  const [production, setProduction] = useState([
+    {
+      name: 'Bebek',
+      iconName: <BabyPijamaSvg color="#fff" />,
+    },
+  ]);
+  const handleSave = () => {
+    console.log('Rol Adı:', roleName);
   };
 
   return (
@@ -82,11 +106,36 @@ export default function Roles(props: any) {
         icon={faPlus}
       />
       <CustomBottomSheet
+        snapPoints={['50%', '70%', '90%']}
         handleClose={(value: boolean) => {
           setAddBottomSheetShow(value);
         }}
         isOpen={addBottomSheetShow}>
-        <View></View>
+        <View style={styles.container}>
+          {/* <Label label="Rol Adı:" />
+          <TextInput
+            style={styles.input}
+            onChangeText={text => setRoleName(text)}
+            value={roleName}
+          /> */}
+          <View style={{flexDirection: 'row', flexWrap: 'wrap', gap: 10}}>
+            {production.map(el => {
+              return (
+                <ClothesButton
+                  onPress={() => {
+                    setSelectedProduction({
+                      name: el.name,
+                      iconName: el.name,
+                    });
+                  }}
+                  isSelected={selectedProduction.name == el.name}
+                  label={el.name}
+                  icon={el.iconName}
+                />
+              );
+            })}
+          </View>
+        </View>
       </CustomBottomSheet>
     </View>
   );
@@ -96,5 +145,19 @@ const styles = StyleSheet.create({
     marginTop: 5,
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  container: {
+    flex: 1,
+    padding: 20,
+    borderRadius: 10,
+  },
+  input: {
+    marginTop: 5,
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    padding: 8,
+    borderRadius: 10,
   },
 });

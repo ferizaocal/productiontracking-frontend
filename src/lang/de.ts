@@ -9,10 +9,10 @@ const de = {
   forgotpasswordscreen_back: 'Zurück',
   forgotpasswordscreen_button: 'Senden',
 
-  drawercontentscreen_users: 'Benutzer',
+  drawercontentscreen_users: 'Rolen',
   drawercontentscreen_orders: 'Bestellungen',
   drawercontentscreen_confirmation: 'Bestätigung',
-  drawercontentscreen_materials: 'Materialien',
+
   drawercontentscreen_report: 'Bericht',
   drawercontentscreen_settings: 'Einstellungen',
   drawercontentscreen_profile: 'Profil',
@@ -62,10 +62,9 @@ const de = {
   profilescreen_title: 'Profil',
 
   rolesscreen_title: 'Benutzer',
+  usersscreen_title: 'Kullanıcılar',
 
   orderscreen_title: 'Bestellungen',
-
-  materialscreen_title: 'Materialien',
 
   bottomtab_popover_product: 'Produkte',
   bottomtab_popover_close: 'Schließen',

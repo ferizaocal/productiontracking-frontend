@@ -23,6 +23,7 @@
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.6.2",
     "dayjs": "^1.11.7",
     "i18n-js": "^3.5.1",
     "react": "18.2.0",
