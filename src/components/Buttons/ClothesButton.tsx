@@ -8,6 +8,7 @@ import {
 import React, {memo} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import Label from '../Text/Label';
+import useThemeColors from '../../constant/useColor';
 
 interface ClothesButtonProps extends TouchableOpacityProps {
   icon: any;
@@ -18,6 +19,7 @@ interface ClothesButtonProps extends TouchableOpacityProps {
 }
 export const ClothesButton = memo((props: ClothesButtonProps) => {
   let bottom = props.bottom ? props.bottom : 30;
+  const colors = useThemeColors();
 
   return (
     <TouchableOpacity
@@ -27,7 +29,7 @@ export const ClothesButton = memo((props: ClothesButtonProps) => {
         {
           ...styles.circleButon,
           bottom: bottom,
-          backgroundColor: props.isSelected ? '#D8B267' : 'gray',
+          backgroundColor: props.isSelected ? colors.menuIcon : 'lightgray',
         },
         styles.shadown,
       ]}>

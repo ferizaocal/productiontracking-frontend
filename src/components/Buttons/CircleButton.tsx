@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import React, {memo} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import useThemeColors from '../../constant/useColor';
 
 interface CircleButtonProps extends TouchableOpacityProps {
   icon: any;
@@ -16,15 +17,23 @@ interface CircleButtonProps extends TouchableOpacityProps {
 }
 export const CircleButton = memo((props: CircleButtonProps) => {
   let bottom = props.bottom ? props.bottom : 30;
+  const colors = useThemeColors();
   return (
     <TouchableOpacity
       {...props}
       activeOpacity={0.7}
-      style={[{...styles.circleButon, bottom: bottom}, styles.shadown]}>
+      style={[
+        {
+          ...styles.circleButon,
+          bottom: bottom,
+          backgroundColor: colors.addButton,
+        },
+        styles.shadown,
+      ]}>
       {props.isSvg ? (
         props.icon
       ) : (
-        <FontAwesomeIcon size={25} color="#594E3C" icon={props.icon} />
+        <FontAwesomeIcon size={25} color="#f0ebe5" icon={props.icon} />
       )}
     </TouchableOpacity>
   );
@@ -32,7 +41,6 @@ export const CircleButton = memo((props: CircleButtonProps) => {
 
 const styles = StyleSheet.create({
   circleButon: {
-    backgroundColor: '#D8B267',
     position: 'absolute',
     right: 30,
     bottom: 30,

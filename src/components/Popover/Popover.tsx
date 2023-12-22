@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {Animated, Dimensions, StyleSheet, View} from 'react-native';
+import useThemeColors from '../../constant/useColor';
 
 interface IPopoverProps {
   children: React.ReactNode;
@@ -16,6 +17,7 @@ const Popover: React.FC<IPopoverProps> = props => {
   const {children, popoverRef} = props;
   const translateYAnimated = useRef(new Animated.Value(-100)).current;
   const opacityAnimated = useRef(new Animated.Value(0)).current;
+  const colors = useThemeColors();
 
   useEffect(() => {
     return () => {
@@ -109,17 +111,5 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
-  },
-  productionButton: {
-    width: 60,
-    height: 60,
-    padding: 10,
-    borderRadius: 25,
-    backgroundColor: '#D8B267',
-    elevation: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 10,
-    marginBottom: 10,
   },
 });

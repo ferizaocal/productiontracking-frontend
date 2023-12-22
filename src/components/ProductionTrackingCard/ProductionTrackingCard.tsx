@@ -16,7 +16,7 @@ import AgeGroupSvg from '../../Svg/AgeGroupSvg';
 import I18n from '../../lang/_i18n';
 import {useSelector} from 'react-redux';
 import {AppState} from '../../store';
-
+import useThemeColors from '../../constant/useColor';
 interface ProductionTrackingCardProps extends PressableProps {}
 
 export default function ProductionTrackingCard({
@@ -30,6 +30,7 @@ export default function ProductionTrackingCard({
   );
 }
 const GridCard = (props: any) => {
+  const colors = useThemeColors();
   const {language} = useSelector((state: AppState) => state.app);
   return (
     <Pressable {...props} style={styles.container}>
@@ -86,7 +87,7 @@ const GridCard = (props: any) => {
           />
         </View>
       </View>
-      <View style={styles.info}>
+      <View style={[styles.info, {backgroundColor: colors.headerBackground}]}>
         <TouchableOpacity style={[styles.infoCol, styles.infoColBottomWidth]}>
           <View style={styles.tracking}>
             <WashingSvg />
@@ -140,6 +141,7 @@ const GridCard = (props: any) => {
 };
 const ListCard = (props: any) => {
   const {language} = useSelector((state: AppState) => state.app);
+  const colors = useThemeColors();
   return (
     <Pressable {...props} style={styles.containerList}>
       <View
@@ -202,7 +204,11 @@ const ListCard = (props: any) => {
             </View>
           </View>
           <View style={styles.rightBottom}>
-            <View style={styles.infoList}>
+            <View
+              style={[
+                styles.infoList,
+                {backgroundColor: colors.headerBackground},
+              ]}>
               <TouchableOpacity
                 style={[styles.infoCol, styles.infoColBottomWidth]}>
                 <View style={styles.tracking}>
@@ -321,7 +327,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     flexDirection: 'column',
-    backgroundColor: '#D8B267',
+
     borderBottomRightRadius: 10,
     borderBottomLeftRadius: 10,
     paddingHorizontal: 10,
@@ -329,7 +335,7 @@ const styles = StyleSheet.create({
   infoList: {
     justifyContent: 'center',
     flexDirection: 'column',
-    backgroundColor: '#D8B267',
+
     paddingHorizontal: 5,
     paddingBottom: 4,
   },

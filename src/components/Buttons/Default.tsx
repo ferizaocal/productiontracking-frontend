@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import Label from '../Text/Label';
+import useThemeColors from '../../constant/useColor';
 
 interface ButtonProps extends TouchableOpacityProps {
   isLoading?: boolean;
@@ -18,13 +19,14 @@ interface ButtonProps extends TouchableOpacityProps {
   label?: any;
 }
 export default function Button(props: ButtonProps) {
+  const colors = useThemeColors();
   return (
     <TouchableOpacity
       {...props}
       style={[
         props.sx,
         {
-          backgroundColor: '#D8B267',
+          backgroundColor: colors.saveButton,
           height: 45,
           justifyContent: 'center',
           alignItems: 'center',

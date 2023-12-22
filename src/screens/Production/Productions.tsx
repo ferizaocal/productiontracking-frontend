@@ -35,8 +35,10 @@ import {
   getAllProductionModels,
 } from '../../utils/api';
 import ProductionModelResponse from '../../DTO/Response/ProductionModelResponse';
+import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
 
 export default function Productions(props: any) {
+  var addBottomSheetRef = useRef<BottomSheet>(null);
   const {user} = useSelector((state: AppState) => state.auth);
   const {language} = useSelector((state: AppState) => state.app);
   const [addBottomSheetShow, setAddBottomSheetShow] = useState(false);
@@ -57,7 +59,19 @@ export default function Productions(props: any) {
       name: selectedProduction.name,
       icon: selectedProduction.iconName,
     })
-      .then(res => {})
+      .then(async res => {
+        if (res.data.isSuccessful) {
+          //true geldiyse bottomSheet kapatıyoruz
+          addBottomSheetRef.current?.close();
+          setAddBottomSheetShow(false);
+          //verileri tekrar yüklüyoruz res callback async kelimesi ekliyoruz
+          await loadProductions();
+          //add bottomSheet Ref alıp kapatılmalı.
+        } else {
+          Alert.alert('Error', res.data.exceptionMessage || 'Hata');
+          console.log(res.data);
+        }
+      })
       .catch(er => {
         console.log(er);
       });
@@ -144,6 +158,7 @@ export default function Productions(props: any) {
         icon={faPlus}
       />
       <CustomBottomSheet
+        ref={addBottomSheetRef}
         snapPoints={['50%']}
         handleClose={(value: boolean) => {
           setAddBottomSheetShow(value);

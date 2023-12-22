@@ -12,6 +12,7 @@ import ArrowRightSvg from '../../Svg/ArrowRightSvg';
 import I18n from '../../lang/_i18n';
 import {useSelector} from 'react-redux';
 import {AppState} from '../../store';
+import useThemeColors from '../../constant/useColor';
 
 interface OrderCardProps {
   width: string;
@@ -21,6 +22,7 @@ export default function OrderCard(props: OrderCardProps) {
     ? props.width
     : Dimensions.get('window').width / 2 - 25;
   const {language} = useSelector((state: AppState) => state.app);
+  const colors = useThemeColors();
   return (
     <Pressable
       onPress={() => {
@@ -35,7 +37,7 @@ export default function OrderCard(props: OrderCardProps) {
       }}>
       <View
         style={{
-          backgroundColor: '#D8B267',
+          backgroundColor: colors.headerBackground,
           height: 25,
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -101,7 +103,7 @@ export default function OrderCard(props: OrderCardProps) {
         style={{
           marginHorizontal: 10,
           width: '90%',
-          backgroundColor: '#D8B267',
+          backgroundColor: colors.headerBackground,
           height: 0.5,
         }}></View>
       <View

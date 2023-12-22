@@ -1,6 +1,7 @@
 import React from 'react';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import useThemeColors from '../../constant/useColor';
 import {
   SafeAreaView,
   StyleSheet,
@@ -17,17 +18,19 @@ export interface HeaderBarProp extends TouchableOpacityProps {
 
   color?: {iconLeft: '#fff'; label: '#fff'};
 }
+
 const HeaderBar: React.FC<HeaderBarProp> = ({
   label,
   iconLeft,
   leftButton,
   color = {iconLeft: '#594E3C', label: '#594E3C'},
 }) => {
+  const colors = useThemeColors();
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: '#D8B267',
+        backgroundColor: colors.headerBackground,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
