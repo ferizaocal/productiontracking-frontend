@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   DrawerContentComponentProps,
@@ -15,9 +15,12 @@ import Orders from '../../screens/Orders';
 
 import Profile from '../../screens/Profile';
 import Confirmation from '../../screens/Confirmation';
-import AddUser from '../../screens/User/AddUser';
+
 import Users from '../../screens/User/Users';
 import Productions from '../../screens/Production/Productions';
+import {useDispatch} from 'react-redux';
+import {fetchActiveProductionModels} from '../../store/slice/productionModelSlice';
+import Operations from '../../screens/Operation/Operations';
 const DrawerNavigation = createDrawerNavigator();
 const DrawerStack = createNativeStackNavigator();
 export default function DrawerStackNavigaton() {
@@ -27,10 +30,7 @@ export default function DrawerStackNavigaton() {
       <DrawerStack.Screen name={RouteTypes.ROLES_SCREEN} component={Roles} />
       <DrawerStack.Screen name={RouteTypes.ORDERS_SCREEN} component={Orders} />
       <DrawerStack.Screen name={RouteTypes.USERS_SCREEN} component={Users} />
-      <DrawerStack.Screen
-        name={RouteTypes.ADD_USER_SCREEN}
-        component={AddUser}
-      />
+
       <DrawerStack.Screen
         name={RouteTypes.CONFIRMATION_SCREEN}
         component={Confirmation}
@@ -49,10 +49,21 @@ export default function DrawerStackNavigaton() {
         name={RouteTypes.PRODUCTIONS_SCREEN}
         component={Productions}
       />
+      <DrawerStack.Screen
+        name={RouteTypes.OPERATIONS_SCREEN}
+        component={Operations}
+      />
     </DrawerStack.Navigator>
   );
 }
 const DrawerScreen = (props: any) => {
+  const dispatch = useDispatch<any>();
+  useEffect(() => {
+    loadActiveProductionModels();
+  }, []);
+  const loadActiveProductionModels = () => {
+    dispatch(fetchActiveProductionModels());
+  };
   return (
     <DrawerNavigation.Navigator
       screenOptions={{

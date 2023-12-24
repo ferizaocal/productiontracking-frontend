@@ -9,10 +9,10 @@ import {
 import React from 'react';
 import Label from '../Text/Label';
 import dayjs from 'dayjs';
-import AngleRightSvg from '../../Svg/AngleRightSvg';
-import WashingSvg from '../../Svg/WashingSvg';
-import MeterSvg from '../../Svg/MeterSvg';
-import AgeGroupSvg from '../../Svg/AgeGroupSvg';
+import AngleRightSvg from '../../svg/AngleRightSvg';
+import WashingSvg from '../../svg/WashingSvg';
+import MeterSvg from '../../svg/MeterSvg';
+import AgeGroupSvg from '../../svg/AgeGroupSvg';
 import I18n from '../../lang/_i18n';
 import {useSelector} from 'react-redux';
 import {AppState} from '../../store';

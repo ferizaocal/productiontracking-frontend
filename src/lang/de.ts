@@ -52,8 +52,8 @@ const de = {
   settingsscreen_productionfailure: 'Produktionsfehler',
   settingsscreen_production_agegroup: 'Altersgruppen',
   settingscreen_production_instruction: 'Produktionsanweisungen',
-  settingsscreen_process_title: 'Prozessmanagement',
-  settingsscreen_process: 'Prozesse',
+  settingsscreen_operations_title: 'Prozessmanagement',
+  settingsscreen_operations: 'Prozesse',
   settingscreen_language: 'Sprache',
   settingscreen_popover_language: 'Sprachen',
 

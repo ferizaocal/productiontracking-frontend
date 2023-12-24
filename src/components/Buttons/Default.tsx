@@ -6,6 +6,7 @@ import {
   StyleSheet,
   StyleProp,
   ViewStyle,
+  ActivityIndicator,
 } from 'react-native';
 import React from 'react';
 import Label from '../Text/Label';
@@ -19,31 +20,35 @@ interface ButtonProps extends TouchableOpacityProps {
   label?: any;
 }
 export default function Button(props: ButtonProps) {
+  const {isLoading, label, children} = props;
   const colors = useThemeColors();
+  const opacityColor = colors.saveButton + '80';
   return (
     <TouchableOpacity
       {...props}
       style={[
         props.sx,
         {
-          backgroundColor: colors.saveButton,
+          backgroundColor: props.disabled ? opacityColor : colors.saveButton,
           height: 45,
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: 10,
         },
       ]}>
-      {props.label ? (
+      {isLoading ? (
+        <ActivityIndicator color={'#fff'} />
+      ) : props.label ? (
         <Label
           font="Raleway-SemiBold"
           sx={{
             fontSize: 15,
             color: '#fff',
           }}
-          label={props.label}
+          label={label}
         />
       ) : (
-        props.children
+        children
       )}
     </TouchableOpacity>
   );

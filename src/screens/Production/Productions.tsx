@@ -1,46 +1,35 @@
-import {
-  View,
-  Text,
-  SafeAreaView,
-  TouchableOpacity,
-  StyleSheet,
-  Pressable,
-  Alert,
-} from 'react-native';
+import {View, TouchableOpacity, StyleSheet, Alert} from 'react-native';
 import React, {memo, useEffect, useRef, useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
-import {
-  faAngleRight,
-  faArrowLeft,
-  faPlus,
-} from '@fortawesome/free-solid-svg-icons';
+import {faPlus, faTrash} from '@fortawesome/free-solid-svg-icons';
 import {useSelector} from 'react-redux';
-import RouteTypes from '../../types/RouteTypes';
-import BabyPijamaSvg from '../../Svg/Clothes/BabyPijamaSvg';
-import Label from '../../components/Text/Label';
-import I18n from 'i18n-js';
+
 import ColBackground from '../../components/Cols/ColBackground';
 import Col from '../../components/Cols/Col';
 import CustomBottomSheet from '../../components/BottomSheet/CustomBottomSheet';
 import {CircleButton} from '../../components/Buttons/CircleButton';
 import {ClothesButton} from '../../components/Buttons/ClothesButton';
 import {AppState} from '../../store';
-import TshirtSvg from '../../Svg/Clothes/TshirtSvg';
+
 import {Clothes, getFindIconByName} from '../../utils/Data';
 import Button from '../../components/Buttons/Default';
 import {
   createProductionModel,
   deleteProductionModel,
   getAllProductionModels,
-} from '../../utils/api';
-import ProductionModelResponse from '../../DTO/Response/ProductionModelResponse';
+  updateProductModelStatusById,
+} from '../../services/ProductionModelService';
+import ProductionModelResponse from '../../dto/Response/ProductionModelResponse';
 import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
+import Container from '../../components/Container/Container';
+import Header from '../../components/Header/ScreenHeader';
+import useThemeColors from '../../constant/useColor';
 
 export default function Productions(props: any) {
   var addBottomSheetRef = useRef<BottomSheet>(null);
+  const colors = useThemeColors();
   const {user} = useSelector((state: AppState) => state.auth);
-  const {language} = useSelector((state: AppState) => state.app);
   const [addBottomSheetShow, setAddBottomSheetShow] = useState(false);
   const [productions, setProductions] = useState<
     Array<ProductionModelResponse>
@@ -49,24 +38,21 @@ export default function Productions(props: any) {
     name: '',
     iconName: '',
   });
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     loadProductions();
   }, []);
 
   const saveProduction = async () => {
-    await createProductionModel(user?.token as string, {
+    await createProductionModel({
       name: selectedProduction.name,
       icon: selectedProduction.iconName,
     })
       .then(async res => {
         if (res.data.isSuccessful) {
-          //true geldiyse bottomSheet kapatıyoruz
           addBottomSheetRef.current?.close();
           setAddBottomSheetShow(false);
-          //verileri tekrar yüklüyoruz res callback async kelimesi ekliyoruz
           await loadProductions();
-          //add bottomSheet Ref alıp kapatılmalı.
         } else {
           Alert.alert('Error', res.data.exceptionMessage || 'Hata');
           console.log(res.data);
@@ -77,86 +63,108 @@ export default function Productions(props: any) {
       });
   };
   const loadProductions = async () => {
-    await getAllProductionModels(user?.token as string)
+    await getAllProductionModels()
       .then(res => {
         setProductions(res.data.list);
       })
-      .catch(res => {
-        console.log(res);
+      .finally(() => {
+        setLoading(false);
       });
   };
+  const handleChangeStatus = (id: number) => {
+    setProductions(
+      productions.map(y => {
+        if (y.id === id) {
+          return {
+            ...y,
+            status: y.status === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE',
+          };
+        }
+        return y;
+      }),
+    );
+  };
   return (
-    <View style={{flex: 1, backgroundColor: '#f5f5f5'}}>
-      <SafeAreaView style={{marginHorizontal: 20}}>
-        <View
-          style={{
-            marginTop: 15,
-            marginBottom: 10,
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}>
-          <TouchableOpacity onPress={() => props.navigation.goBack()}>
-            <FontAwesomeIcon icon={faArrowLeft} color="#D8B267" size={25} />
-          </TouchableOpacity>
-          <Label
-            font="Raleway-Bold"
-            sx={{fontSize: 20, color: '#5F5E70', marginLeft: 15}}
-            label={I18n.t('settingsscreen_production_Title', {
-              locale: language,
-            })}
-          />
-        </View>
-        <View style={{marginTop: 30}}>
-          <ColBackground>
-            {productions.map((el, index) => (
-              <Col
-                onLongPress={() => {
-                  Alert.alert('Uyarı', 'Silmek istediğinize emin misiniz?', [
+    <Container>
+      <Header title="productionmanager" />
+      <Container mx={20} isLoading={loading} mt={30}>
+        <ColBackground>
+          {productions.map((el, index) => (
+            <Col
+              onPress={() => {
+                Alert.alert(
+                  'Uyarı',
+                  el.status === 'ACTIVE'
+                    ? 'Bu üretim modelini pasif hale getirmek istiyor musunuz?'
+                    : 'Bu üretim modelini aktif hale getirmek istiyor musunuz?',
+                  [
                     {
                       text: 'Evet',
                       onPress: async () => {
-                        await deleteProductionModel(user?.token as any, el.id)
-                          .then(res => {
-                            if (res.data.isSuccessful) {
-                              loadProductions();
-                            }
-                          })
-                          .catch(er => {
-                            console.log(er);
-                            Alert.alert('Hata', 'Silinemedi');
-                          });
+                        await updateProductModelStatusById(el.id).then(res => {
+                          if (res.data.isSuccessful) {
+                            handleChangeStatus(el.id);
+                          }
+                        });
                       },
                     },
                     {
                       text: 'Hayır',
-                      onPress: () => {
-                        console.log('Hayır');
-                      },
+                      onPress: () => {},
                     },
-                  ]);
-                }}
-                leftIcon={getFindIconByName(el.icon, '#D8B267')}
-                key={index}
-                name={el.name}
-                icon={
+                  ],
+                );
+              }}
+              activeOpacity={0.8}
+              leftIcon={getFindIconByName(el.icon, colors.iconColor)}
+              key={index}
+              name={el.name}
+              active={el.status === 'INACTIVE' ? true : false}
+              icon={
+                <TouchableOpacity
+                  hitSlop={20}
+                  onPress={() => {
+                    Alert.alert('Uyarı', 'Silmek istediğinize emin misiniz?', [
+                      {
+                        text: 'Evet',
+                        onPress: async () => {
+                          setLoading(true);
+                          await deleteProductionModel(el.id)
+                            .then(res => {
+                              if (res.data.isSuccessful) {
+                                loadProductions();
+                              }
+                            })
+                            .finally(() => {
+                              setLoading(false);
+                            });
+                        },
+                      },
+                      {
+                        text: 'Hayır',
+                        onPress: () => {},
+                      },
+                    ]);
+                  }}>
                   <FontAwesomeIcon
-                    icon={faAngleRight}
-                    color="#D8B267"
-                    size={25}
+                    icon={faTrash}
+                    color={colors.iconColor}
+                    size={20}
                   />
-                }
-              />
-            ))}
-          </ColBackground>
-        </View>
-      </SafeAreaView>
-
-      <CircleButton
-        onPress={() => {
-          setAddBottomSheetShow(true);
-        }}
-        icon={faPlus}
-      />
+                </TouchableOpacity>
+              }
+            />
+          ))}
+        </ColBackground>
+      </Container>
+      {!loading && (
+        <CircleButton
+          onPress={() => {
+            setAddBottomSheetShow(true);
+          }}
+          icon={faPlus}
+        />
+      )}
       <CustomBottomSheet
         ref={addBottomSheetRef}
         snapPoints={['50%']}
@@ -171,6 +179,13 @@ export default function Productions(props: any) {
                 <ClothesButton
                   key={el.name}
                   onPress={() => {
+                    if (selectedProduction.name == el.name) {
+                      setSelectedProduction({
+                        name: '',
+                        iconName: '',
+                      });
+                      return;
+                    }
                     setSelectedProduction({
                       name: el.name,
                       iconName: el.name,
@@ -186,13 +201,14 @@ export default function Productions(props: any) {
         </View>
         <View style={{marginBottom: 50, marginHorizontal: 20}}>
           <Button
+            disabled={selectedProduction.name == ''}
             activeOpacity={0.8}
             onPress={saveProduction}
             label={'KAYDET'}
           />
         </View>
       </CustomBottomSheet>
-    </View>
+    </Container>
   );
 }
 const styles = StyleSheet.create({

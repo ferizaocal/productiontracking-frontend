@@ -9,7 +9,6 @@ const RouteTypes = {
   ROLES_SCREEN: 'RolesScreen',
   CONFIRMATION_SCREEN: 'ConfirmationScreen',
   USERS_SCREEN: 'UsersScreen',
-  ADD_USER_SCREEN: 'AddUser',
 
   MAIN_BOTTOM_TAB: 'MainBottomTab',
   HOME_BOTTOM_TAB: 'HomeBottomTab',
@@ -18,5 +17,6 @@ const RouteTypes = {
   PRODUCT_BOTTOM_TAB: 'ProductBottomTab',
 
   PRODUCTIONS_SCREEN: 'ProductionsScreen',
+  OPERATIONS_SCREEN: 'OperationsScreen',
 };
 export default RouteTypes;

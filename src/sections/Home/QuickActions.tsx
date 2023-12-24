@@ -2,9 +2,9 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import Label from '../../components/Text/Label';
 
-import OrderCreateSvg from '../../Svg/OrderCreateSvg';
-import FabricSvg from '../../Svg/FabricSvg';
-import ProductionTrackingSvg from '../../Svg/ProductionTrackingSvg';
+import OrderCreateSvg from '../../svg/OrderCreateSvg';
+import FabricSvg from '../../svg/FabricSvg';
+import ProductionTrackingSvg from '../../svg/ProductionTrackingSvg';
 import I18n from '../../lang/_i18n';
 import QuickWidget from './QuickWidget';
 import {AppState} from '../../store';

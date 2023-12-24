@@ -1,9 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {AppSettingsState} from '../AppSettingsState';
+import ProductionModelResponse from '../../dto/Response/ProductionModelResponse';
+
+export interface AppSettingsState {
+  language: string;
+  production: ProductionModelResponse;
+  listType: 'grid' | 'list';
+}
 
 export const INITIAL_STATE: AppSettingsState = {
   language: 'en',
-  production: '',
+  production: {} as ProductionModelResponse,
   listType: 'grid',
 };
 export const appSlice = createSlice({

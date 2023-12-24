@@ -1,11 +1,11 @@
-import TurkeyFlagSvg from '../Svg/Flags/TurkeyFlagSvg';
-import EnglishFlagSvg from '../Svg/Flags/EnglishFlagSvg';
-import GermanyFlagSvg from '../Svg/Flags/GermanyFlagSvg';
+import TurkeyFlagSvg from '../svg/Flags/TurkeyFlagSvg';
+import EnglishFlagSvg from '../svg/Flags/EnglishFlagSvg';
+import GermanyFlagSvg from '../svg/Flags/GermanyFlagSvg';
 import I18n from '../lang/_i18n';
-import ChinaFlagSvg from '../Svg/Flags/ChinaFlagSvg';
+import ChinaFlagSvg from '../svg/Flags/ChinaFlagSvg';
 import RouteTypes from '../types/RouteTypes';
-import BabyPijamaSvg from '../Svg/Clothes/BabyPijamaSvg';
-import TshirtSvg from '../Svg/Clothes/TshirtSvg';
+import BabyPijamaSvg from '../svg/Clothes/BabyPijamaSvg';
+import TshirtSvg from '../svg/Clothes/TshirtSvg';
 
 export const SettingList_Production = ({lang}: {lang: string}) => [
   {
@@ -17,9 +17,10 @@ export const SettingList_Production = ({lang}: {lang: string}) => [
     route: RouteTypes.PRODUCTIONS_SCREEN,
   },
 ];
-export const SettingList_Process = ({lang}: {lang: string}) => [
+export const SettingList_Operations = ({lang}: {lang: string}) => [
   {
-    name: I18n.t('settingsscreen_process', {locale: lang}),
+    name: I18n.t('settingsscreen_operations', {locale: lang}),
+    route: RouteTypes.OPERATIONS_SCREEN,
   },
 ];
 export const SettingList_Language = [

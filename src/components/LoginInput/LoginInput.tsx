@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
+import Label from '../Text/Label';
 
 interface LoginInputProps extends TextInputProps {
   icon?: IconProp;
@@ -36,15 +37,15 @@ export default function LoginInput({
           <FontAwesomeIcon color={iconColor} icon={icon} size={iconSize} />
         )}
         {svg && svg}
-        <Text
-          style={{
+        <Label
+          label={title}
+          font="Raleway-Bold"
+          sx={{
             fontSize: 15,
             color: '#868686',
-            marginLeft: 10,
-            fontFamily: 'Raleway-Bold',
-          }}>
-          {title}
-        </Text>
+            marginLeft: 5,
+          }}
+        />
       </View>
       <TextInput
         style={{

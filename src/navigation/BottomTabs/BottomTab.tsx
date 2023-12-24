@@ -2,10 +2,10 @@ import React, {useContext, useEffect, useRef, useState} from 'react';
 import Home from '../../screens/Home';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import CustomTabBar from './CustomTabBar';
-import HomeSvg from '../../Svg/HomeSvg';
-import FabricSvg from '../../Svg/FabricSvg';
-import ProductionTrackingSvg from '../../Svg/ProductionTrackingSvg';
-import JacketSvg from '../../Svg/Clothes/JacketSvg';
+import HomeSvg from '../../svg/HomeSvg';
+import FabricSvg from '../../svg/FabricSvg';
+import ProductionTrackingSvg from '../../svg/ProductionTrackingSvg';
+import JacketSvg from '../../svg/Clothes/JacketSvg';
 import {
   StyleSheet,
   View,
@@ -15,14 +15,14 @@ import {
   TouchableOpacity,
   Pressable,
 } from 'react-native';
-import TshirtSvg from '../../Svg/Clothes/TshirtSvg';
+import TshirtSvg from '../../svg/Clothes/TshirtSvg';
 import Label from '../../components/Text/Label';
-import BabyPijamaSvg from '../../Svg/Clothes/BabyPijamaSvg';
-import JeansPantsSvg from '../../Svg/Clothes/JeansPantsSvg';
-import ScarfSvg from '../../Svg/Clothes/ScarfSvg';
-import ShirtSvg from '../../Svg/Clothes/ShirtSvg';
-import ShortPantsSvg from '../../Svg/Clothes/ShortPantsSvg';
-import SkirtSvg from '../../Svg/Clothes/SkirtSvg';
+import BabyPijamaSvg from '../../svg/Clothes/BabyPijamaSvg';
+import JeansPantsSvg from '../../svg/Clothes/JeansPantsSvg';
+import ScarfSvg from '../../svg/Clothes/ScarfSvg';
+import ShirtSvg from '../../svg/Clothes/ShirtSvg';
+import ShortPantsSvg from '../../svg/Clothes/ShortPantsSvg';
+import SkirtSvg from '../../svg/Clothes/SkirtSvg';
 import RouteTypes from '../../types/RouteTypes';
 import Product from '../../screens/Product';
 import ProductionTracking from '../../screens/ProductionTracking';
@@ -32,8 +32,11 @@ import I18n from '../../lang/_i18n';
 import Popover from '../../components/Popover/Popover';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppState} from '../../store';
-import QuestionMarkSvg from '../../Svg/QuestionMarkSvg';
+import QuestionMarkSvg from '../../svg/QuestionMarkSvg';
 import {AppActions} from '../../store/slice/appSlice';
+import {getFindIconByName} from '../../utils/Data';
+import {ClothesButton} from '../../components/Buttons/ClothesButton';
+import {updateActiveProductionModelToUser} from '../../services/UserService';
 
 const Tab = createBottomTabNavigator();
 const Clothes = ({language}: {language: string}) => [
@@ -49,7 +52,12 @@ const Clothes = ({language}: {language: string}) => [
 
 export default function BottomTab() {
   const dispatch = useDispatch();
+  const colors = useThemeColors();
   const {production, language} = useSelector((state: AppState) => state.app);
+
+  const {activeProductionModels} = useSelector(
+    (state: AppState) => state.productionModel,
+  );
   var popoverRef = useRef<any>(null);
   const handleOpenPopover = () => {
     if (popoverRef.current) {
@@ -62,8 +70,9 @@ export default function BottomTab() {
       popoverRef.current.closePopover();
     }
   };
+
   const SelectedProduction = () =>
-    Clothes({language}).find(c => c.label === production);
+    Clothes({language}).find(c => c.label === production.name);
   return (
     <View style={{flex: 1}}>
       <Tab.Navigator
@@ -94,7 +103,7 @@ export default function BottomTab() {
         <Tab.Screen
           options={{
             tabBarIcon: props => {
-              if (SelectedProduction && production.length != 0) {
+              if (SelectedProduction && Object.keys(production).length != 0) {
                 return SelectedProduction()?.icon({...props});
               } else {
                 return <QuestionMarkSvg {...props} />;
@@ -132,49 +141,30 @@ export default function BottomTab() {
           </Pressable>
         </View>
         <View style={styles.popoverItem}>
-          {Clothes({language}).map((button, index) => (
-            <ProductionButton
-              onPress={() => {
-                dispatch(AppActions.setProduction(button.label));
-              }}
-              key={index}
-              icon={button.icon({color: '#fff'})}
-              label={button.label}
-              isActive={button.label === production}
-            />
-          ))}
+          {activeProductionModels?.map((el, index) => {
+            let isActive = el.id === production.id;
+            return (
+              <ClothesButton
+                onPress={async () => {
+                  dispatch(AppActions.setProduction(el));
+                  await updateActiveProductionModelToUser(el.id);
+                }}
+                key={index}
+                icon={getFindIconByName(
+                  el.name,
+                  isActive ? '#fff' : colors.iconColor,
+                )}
+                label={el.name}
+                isSelected={isActive}
+              />
+            );
+          })}
         </View>
       </Popover>
     </View>
   );
 }
-interface ProductionButtonProps extends TouchableOpacityProps {
-  label: string;
-  icon?: any;
-  isActive?: boolean;
-}
-const ProductionButton = (props: ProductionButtonProps) => {
-  const {label, icon, ...rest} = props;
 
-  return (
-    <TouchableOpacity
-      {...rest}
-      style={{
-        ...styles.productionButton,
-        backgroundColor: props.isActive ? '#D8B267' : '#999',
-      }}>
-      {icon}
-      <Label
-        font="Raleway-Bold"
-        sx={{
-          fontSize: 8,
-          color: '#fff',
-          marginTop: 5,
-        }}
-        label={label}></Label>
-    </TouchableOpacity>
-  );
-};
 const styles = StyleSheet.create({
   bgContainer: {
     position: 'absolute',
@@ -202,9 +192,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   popoverItem: {
-    marginTop: 20,
+    marginVertical: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    gap: 10,
   },
   productionButton: {
     width: 60,

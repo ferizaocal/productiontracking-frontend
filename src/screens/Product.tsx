@@ -10,7 +10,7 @@ import {
 import Header from '../components/Header/Header';
 import SearchResults from '../components/SearchResult/SearchResult';
 import Label from '../components/Text/Label';
-import FilterSvg from '../Svg/FilterSvg';
+import FilterSvg from '../svg/FilterSvg';
 import I18n from '../lang/_i18n';
 import {AppState} from '../store';
 import {useSelector} from 'react-redux';

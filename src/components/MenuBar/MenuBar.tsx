@@ -1,7 +1,7 @@
 import React from 'react';
 import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
 
-import MenuSvg from '../../Svg/MenuSvg';
+import MenuSvg from '../../svg/MenuSvg';
 
 interface MenuBarProps extends TouchableOpacityProps {
   icon: React.ReactNode;

@@ -16,7 +16,7 @@ export interface CustomBottomSheetProps {
 const CustomBottomSheet = React.forwardRef(
   (props: CustomBottomSheetProps, ref: any) => {
     {
-      const snapPoints = useMemo(() => props.snapPoints || ['80%'], []);
+      const snapPoints = props.snapPoints || ['80%'];
       let enableClose = props.enableClose || true;
       return (
         <BottomSheet

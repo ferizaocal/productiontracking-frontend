@@ -11,18 +11,23 @@ interface ColProps extends TouchableOpacityProps {
   leftIcon?: any;
   name?: string;
   icon: any;
+  active?: boolean;
 }
 const Col = (props: ColProps) => {
+  const opacityColor = props.active ? '#CCCCCC80' : '#fff';
   return (
     <TouchableOpacity
       {...props}
       style={{
+        borderRadius: 7,
+        paddingHorizontal: 7,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         borderBottomWidth: 1,
         borderBottomColor: '#F5F5F5',
         paddingVertical: 10,
+        backgroundColor: opacityColor,
       }}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         {props.leftIcon}

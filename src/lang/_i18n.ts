@@ -6,18 +6,20 @@ import en from './en';
 import tr from './tr';
 import de from './de';
 import zh from './zh';
+import {store} from '../store';
 
 const locales = RNLocalize.getLocales();
-I18n.locale = locales[0].languageTag;
 export const isRtl = locales[0].isRTL;
 I18nManager.forceRTL(isRtl);
 I18n.fallbacks = true;
-I18n.locales.no = 'tr';
 I18n.translations = {
   tr,
   en,
   de,
   zh,
 };
-
+store.subscribe(() => {
+  const state = store.getState();
+  I18n.locale = state.app.language;
+});
 export default I18n;

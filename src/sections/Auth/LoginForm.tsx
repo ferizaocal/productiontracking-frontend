@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 import LoginInput from '../../components/LoginInput/LoginInput';
 
 import Label from '../../components/Text/Label';
-import EmailSvg from '../../Svg/EmailSvg';
-import PasswordSvg from '../../Svg/PasswordSvg';
+import EmailSvg from '../../svg/EmailSvg';
+import PasswordSvg from '../../svg/PasswordSvg';
 import Button from '../../components/Buttons/Default';
 import I18n from '../../lang/_i18n';
 import {useNavigation} from '@react-navigation/native';
@@ -12,7 +12,7 @@ import {goNavigate} from '../../utils/Helper';
 import RouteTypes from '../../types/RouteTypes';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppState} from '../../store';
-import {postLogin} from '../../utils/api';
+import {postLogin} from '../../services/UserService';
 import {AuthActions} from '../../store/slice/authSlice';
 
 export default function LoginForm() {
@@ -84,12 +84,6 @@ export default function LoginForm() {
           <Button
             onPress={() => {
               handleLogin();
-              // dispatch(
-              //   AuthActions.setUser({
-              //     name: 'ferizaocal@gmail.com',
-              //     password: '123456',
-              //   }),
-              // );
             }}
             activeOpacity={0.8}
             sx={{marginTop: 30, width: '50%'}}>

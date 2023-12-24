@@ -52,8 +52,8 @@ const en = {
   settingsscreen_productionfailure: 'Üretim Hataları',
   settingsscreen_production_agegroup: 'Yaş Grupları',
   settingscreen_production_instruction: 'Üretim Talimatları',
-  settingsscreen_process_title: 'Süreç Yönetimi',
-  settingsscreen_process: 'Süreçler',
+  settingsscreen_operations_title: 'Süreç Yönetimi',
+  settingsscreen_operations: 'Süreçler',
   settingscreen_language: 'Dil',
   settingscreen_popover_language: 'Diller',
 
@@ -65,7 +65,7 @@ const en = {
   usersscreen_title: 'Kullanıcılar',
   orderscreen_title: 'Siparişler',
 
-  bottomtab_popover_product: 'Ürünler',
+  bottomtab_popover_product: 'Üretim',
   bottomtab_popover_close: 'Kapat',
 
   global_viewall: 'Hepsini Gör',

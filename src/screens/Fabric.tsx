@@ -10,7 +10,7 @@ import Header from '../components/Header/Header';
 import SearchResults from '../components/SearchResult/SearchResult';
 import Label from '../components/Text/Label';
 import I18n from '../lang/_i18n';
-import FilterSvg from '../Svg/FilterSvg';
+import FilterSvg from '../svg/FilterSvg';
 import {useSelector} from 'react-redux';
 import {AppState} from '../store';
 export default function Fabric(props: any) {

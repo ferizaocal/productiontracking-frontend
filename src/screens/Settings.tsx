@@ -20,12 +20,14 @@ import {AppState} from '../store';
 import {AppActions} from '../store/slice/appSlice';
 import {
   SettingList_Language,
-  SettingList_Process,
+  SettingList_Operations,
   SettingList_Production,
 } from '../utils/Data';
 import ColTitle from '../components/Cols/ColTitle';
 import ColBackground from '../components/Cols/ColBackground';
 import Col from '../components/Cols/Col';
+import Container from '../components/Container/Container';
+import Header from '../components/Header/ScreenHeader';
 
 export default function Settings(props: any) {
   const popoverRef = useRef<any>(null);
@@ -44,23 +46,9 @@ export default function Settings(props: any) {
   const SelectedLanguage = () =>
     SettingList_Language.find(x => x.shortName === language);
   return (
-    <View style={{flex: 1, backgroundColor: '#f5f5f5'}}>
-      <SafeAreaView style={{marginLeft: 20, marginRight: 20}}>
-        <View style={styles.col}>
-          <TouchableOpacity onPress={() => props.navigation.goBack()}>
-            <FontAwesomeIcon icon={faArrowLeft} color="#D8B267" size={25} />
-          </TouchableOpacity>
-          <Label
-            font="Raleway-Bold"
-            sx={{
-              marginLeft: 15,
-              color: '#5F5E70',
-              fontSize: 20,
-            }}
-            label={I18n.t('settingscreen_title', {locale: language})}
-          />
-        </View>
-
+    <Container>
+      <Header title="settings" />
+      <Container mx={20} mt={15}>
         <ColTitle
           name={I18n.t('settingsscreen_production_Title', {locale: language})}
         />
@@ -81,11 +69,12 @@ export default function Settings(props: any) {
           ))}
         </ColBackground>
         <ColTitle
-          name={I18n.t('settingsscreen_process_title', {locale: language})}
+          name={I18n.t('settingsscreen_operations_title', {locale: language})}
         />
         <ColBackground>
-          {SettingList_Process({lang: language}).map((item, index) => (
+          {SettingList_Operations({lang: language}).map((item, index) => (
             <Col
+              onPress={() => props.navigation.navigate(item.route)}
               key={index}
               name={item.name}
               icon={
@@ -106,7 +95,7 @@ export default function Settings(props: any) {
             icon={SelectedLanguage()?.icon}
           />
         </ColBackground>
-      </SafeAreaView>
+      </Container>
       <Popover popoverRef={popoverRef}>
         <View style={styles.popoverHeader}>
           <Label
@@ -144,7 +133,7 @@ export default function Settings(props: any) {
           ))}
         </View>
       </Popover>
-    </View>
+    </Container>
   );
 }
 interface ProductionButtonProps extends TouchableOpacityProps {

@@ -53,8 +53,8 @@ const en = {
   settingsscreen_productionfailure: 'Production Failures',
   settingsscreen_production_agegroup: 'Age Groups',
   settingscreen_production_instruction: 'Production Instructions',
-  settingsscreen_process_title: 'Process Management',
-  settingsscreen_process: 'Processes',
+  settingsscreen_operations_title: 'Operations Management',
+  settingsscreen_operations: 'Operations',
   settingscreen_language: 'Language',
   settingscreen_popover_language: 'Languages',
 

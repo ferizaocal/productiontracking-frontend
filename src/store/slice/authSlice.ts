@@ -1,6 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {AuthState} from '../AuthState';
-import LoginResponse from '../../DTO/Response/LoginResponse';
+
+import LoginResponse from '../../dto/Response/LoginResponse';
+export interface AuthState {
+  firebaseToken: string | null;
+  user: LoginResponse | null;
+}
 
 const INITIAL_STATE: AuthState = {
   user: {} as LoginResponse,

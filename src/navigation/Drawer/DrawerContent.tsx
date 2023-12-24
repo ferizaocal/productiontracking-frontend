@@ -9,20 +9,20 @@ import {
 import React, {memo} from 'react';
 import {DrawerContentComponentProps} from '@react-navigation/drawer';
 import Label from '../../components/Text/Label';
-import UsersSvg from '../../Svg/UsersSvg';
-import OrderSvg from '../../Svg/OrderSvg';
+import UsersSvg from '../../svg/UsersSvg';
+import OrderSvg from '../../svg/OrderSvg';
 
-import ReportSvg from '../../Svg/ReportSvg';
-import SettingsSvg from '../../Svg/SettingsSvg';
-import UserSvg from '../../Svg/UserSvg';
-import LogoutSvg from '../../Svg/LogoutSvg';
+import ReportSvg from '../../svg/ReportSvg';
+import SettingsSvg from '../../svg/SettingsSvg';
+import UserSvg from '../../svg/UserSvg';
+import LogoutSvg from '../../svg/LogoutSvg';
 import I18n from '../../lang/_i18n';
 import RouteTypes from '../../types/RouteTypes';
-import ConfirmationSvg from '../../Svg/ConfirmationSvg';
+import ConfirmationSvg from '../../svg/ConfirmationSvg';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppState} from '../../store';
 import {AuthActions} from '../../store/slice/authSlice';
-import TransportSvg from '../../Svg/TransportSvg';
+import TransportSvg from '../../svg/TransportSvg';
 interface DrawerButtonProps extends TouchableOpacityProps {
   label: string;
   icon: React.ReactNode;

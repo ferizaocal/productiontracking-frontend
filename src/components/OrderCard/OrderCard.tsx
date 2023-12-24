@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import Label from '../Text/Label';
 import dayjs from 'dayjs';
-import ArrowRightSvg from '../../Svg/ArrowRightSvg';
+import ArrowRightSvg from '../../svg/ArrowRightSvg';
 import I18n from '../../lang/_i18n';
 import {useSelector} from 'react-redux';
 import {AppState} from '../../store';

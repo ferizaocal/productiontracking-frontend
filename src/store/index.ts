@@ -2,16 +2,22 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {persistStore} from 'redux-persist';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk from 'redux-thunk';
-
-import AppReducer from './slice/appSlice';
-import {AppSettingsState} from './AppSettingsState';
+import AppReducer, {AppSettingsState} from './slice/appSlice';
 import persistReducer from 'redux-persist/es/persistReducer';
-import {AuthState} from './AuthState';
-import AuthReducer from './slice/authSlice';
+import AuthReducer, {AuthState} from './slice/authSlice';
+
+import ProductionModelReducer, {
+  ProductionModelState,
+} from './slice/productionModelSlice';
+import OperationReducer, {OperationState} from './slice/operationSlice';
+import RoleReducer, {RoleState} from './slice/roleSlice';
 
 export interface AppState {
   app: AppSettingsState;
   auth: AuthState;
+  productionModel: ProductionModelState;
+  operation: OperationState;
+  role: RoleState;
 }
 export const Config = {
   key: 'root',
@@ -22,6 +28,9 @@ export const Config = {
 const rootReducer = combineReducers<AppState>({
   app: persistReducer(Config, AppReducer),
   auth: persistReducer(Config, AuthReducer),
+  productionModel: ProductionModelReducer,
+  operation: OperationReducer,
+  role: RoleReducer,
 } as any);
 export const store = createStore(rootReducer, applyMiddleware(thunk));
 export const persistor = persistStore(store);

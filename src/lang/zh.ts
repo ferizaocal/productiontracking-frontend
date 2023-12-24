@@ -52,8 +52,8 @@ const zh = {
   settingsscreen_productionfailure: '生产失败',
   settingsscreen_production_agegroup: '年龄分组',
   settingscreen_production_instruction: '生产指令',
-  settingsscreen_process_title: '过程管理',
-  settingsscreen_process: '过程',
+  settingsscreen_operations_title: '过程管理',
+  settingsscreen_operations: '过程',
   settingscreen_language: '语言',
   settingscreen_popover_language: '语言',
 

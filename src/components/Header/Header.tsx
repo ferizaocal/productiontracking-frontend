@@ -20,7 +20,7 @@ import {
   showHomePageWithAnimation,
   startInputWidth,
 } from './Animated';
-import MenuSvg from '../../Svg/MenuSvg';
+import MenuSvg from '../../svg/MenuSvg';
 
 interface HeaderProps {
   navigation: any;
@@ -80,7 +80,13 @@ export default function Header({
       />
       <View style={{flex: 1}}>
         <Animated.View style={{width: inputWidth}}>
-          <SearchBar onFocus={handleFocus} onBlur={handleBlur} />
+          <SearchBar
+            sx={{
+              marginLeft: 20,
+            }}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+          />
         </Animated.View>
       </View>
       {isFocused && (

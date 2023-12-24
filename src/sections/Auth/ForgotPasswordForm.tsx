@@ -3,7 +3,7 @@ import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import LoginInput from '../../components/LoginInput/LoginInput';
 
 import Label from '../../components/Text/Label';
-import EmailSvg from '../../Svg/EmailSvg';
+import EmailSvg from '../../svg/EmailSvg';
 import Button from '../../components/Buttons/Default';
 import I18n from '../../lang/_i18n';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';

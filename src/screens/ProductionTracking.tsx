@@ -14,8 +14,8 @@ import Button from '../components/Buttons/Default';
 import ProductionTrackingCard from '../components/ProductionTrackingCard/ProductionTrackingCard';
 import Label from '../components/Text/Label';
 import I18n from '../lang/_i18n';
-import FilterSvg from '../Svg/FilterSvg';
-import ListSvg from '../Svg/ListSvg';
+import FilterSvg from '../svg/FilterSvg';
+import ListSvg from '../svg/ListSvg';
 
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faGripVertical} from '@fortawesome/free-solid-svg-icons';

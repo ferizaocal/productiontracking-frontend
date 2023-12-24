@@ -8,7 +8,7 @@ import {
   TextStyle,
 } from 'react-native';
 import React from 'react';
-import SearchSvg from '../../Svg/SearchSvg';
+import SearchSvg from '../../svg/SearchSvg';
 import I18n from '../../lang/_i18n';
 import {useSelector} from 'react-redux';
 import {AppState} from '../../store';
@@ -19,12 +19,7 @@ interface SearchBarProps extends TextInputProps {
 export default function SearchBar(props: SearchBarProps) {
   const {language} = useSelector((state: AppState) => state.app);
   return (
-    <View
-      // style={{
-      //   marginLeft: 20,
-      //   ...(props.sx && typeof props.sx === 'object' ? props.sx : {}),
-      // }}
-      style={[props.sx, {marginLeft: 20}]}>
+    <View style={[props.sx]}>
       <View style={{position: 'absolute', zIndex: 10, left: 18, top: 12}}>
         <SearchSvg />
       </View>

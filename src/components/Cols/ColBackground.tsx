@@ -6,7 +6,6 @@ const ColBackground = (props: {children: React.ReactNode}) => {
     <View
       style={{
         backgroundColor: '#fff',
-        paddingHorizontal: 7,
         borderRadius: 7,
       }}>
       {props.children}
