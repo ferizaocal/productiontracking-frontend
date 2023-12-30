@@ -6,7 +6,68 @@ import ChinaFlagSvg from '../svg/Flags/ChinaFlagSvg';
 import RouteTypes from '../types/RouteTypes';
 import BabyPijamaSvg from '../svg/Clothes/BabyPijamaSvg';
 import TshirtSvg from '../svg/Clothes/TshirtSvg';
-
+export const SECTIONS = [
+  {
+    title: 'Kesim',
+    data: [
+      {
+        title: 'Saç Kaynağı',
+        price: 30,
+        description: '60 DK',
+      },
+      {
+        title: 'Saç Yıkama',
+        price: 30,
+        description: '20 DK',
+      },
+      {
+        title: 'Saç Boyama',
+        price: 30,
+        description: '60 DK',
+      },
+      {
+        title: 'Saç Kesimi',
+        price: 30,
+        description: '30 DK',
+      },
+      {
+        title: 'Saç Bakımı',
+        price: 30,
+        description: '30 DK',
+      },
+    ],
+  },
+  {
+    title: 'Yıkama',
+    data: [
+      {
+        title: 'Tırnak Kaynağı',
+        price: 30,
+        description: '60 DK',
+      },
+      {
+        title: 'Manikür',
+        price: 30,
+        description: '20 DK',
+      },
+      {
+        title: 'Pedikür',
+        price: 30,
+        description: '60 DK',
+      },
+      {
+        title: 'Tırnak Bakımı',
+        price: 30,
+        description: '30 DK',
+      },
+      {
+        title: 'Tırnak Boyama',
+        price: 30,
+        description: '30 DK',
+      },
+    ],
+  },
+];
 export const SettingList_Production = ({lang}: {lang: string}) => [
   {
     name: I18n.t('settingsscreen_productions', {locale: lang}),

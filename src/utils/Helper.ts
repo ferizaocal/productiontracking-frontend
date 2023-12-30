@@ -17,3 +17,11 @@ export const objectToCheckReturnBoolean = (obj: any) => {
   });
   return result;
 };
+export const ValidationFields = {
+  email: {
+    regex: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+  },
+  password: {
+    regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/,
+  },
+};

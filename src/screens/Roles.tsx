@@ -28,7 +28,7 @@ import CreateRoleRequest from '../dto/Request/CreateRoleRequest';
 import {RoleActions, fetchRoles} from '../store/slice/roleSlice';
 import OperationResponse from '../dto/Response/OperationResponse';
 import {objectToCheckReturnBoolean} from '../utils/Helper';
-import {createRole, updateRole} from '../services/RoleService';
+import {createRole, getRoles, updateRole} from '../services/RoleService';
 import ColBackground from '../components/Cols/ColBackground';
 import Col from '../components/Cols/Col';
 import UpdateRoleRequest from '../dto/Request/UpdateRoleRequest';
@@ -37,9 +37,8 @@ import RouteTypes from '../types/RouteTypes';
 export default function Roles(props: any) {
   const dispatch = useDispatch<any>();
   const colors = useThemeColors();
-  const {createRoleDto, updateRoleDto, roles, buttonLoading} = useSelector(
-    (state: AppState) => state.role,
-  );
+  const {createRoleDto, updateRoleDto, roles, buttonLoading, pageLoading} =
+    useSelector((state: AppState) => state.role);
   const [addBottomSheetShow, setAddBottomSheetShow] = useState(false);
   const [editBottomSheetShow, setEditBottomSheetShow] = useState(false);
   var addRef = useRef<BottomSheet>(null);
@@ -51,10 +50,12 @@ export default function Roles(props: any) {
 
   useEffect(() => {
     props.navigation.addListener('focus', () => {
-      dispatch(fetchRoles());
+      loadRoles();
     });
   }, []);
-
+  const loadRoles = async () => {
+    dispatch(fetchRoles());
+  };
   const checkCreateRoleFormInputs = () => {
     var checkJson = {
       name: createRoleDto.name,
@@ -115,7 +116,7 @@ export default function Roles(props: any) {
   return (
     <View style={{flex: 1, backgroundColor: '#f5f5f5'}}>
       <Header title="roles" />
-      <Container mx={20} mt={30}>
+      <Container isLoading={pageLoading} mx={20} mt={30}>
         <ColBackground>
           {[...roles]
             .sort((a, b) => (a.id > b.id ? 1 : -1))

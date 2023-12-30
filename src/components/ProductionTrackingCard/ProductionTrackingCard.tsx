@@ -87,7 +87,7 @@ const GridCard = (props: any) => {
           />
         </View>
       </View>
-      <View style={[styles.info, {backgroundColor: colors.headerBackground}]}>
+      <View style={[styles.info, {backgroundColor: colors.headerColor}]}>
         <TouchableOpacity style={[styles.infoCol, styles.infoColBottomWidth]}>
           <View style={styles.tracking}>
             <WashingSvg />

@@ -11,6 +11,7 @@ export interface OperationState {
   operations: OperationResponse[];
   createOperationDto: CreateOperationRequest;
   updateOperationDto: UpdateOperationRequest;
+  selectedOperation: OperationResponse;
   buttonLoading: boolean;
   pageLoading: boolean;
 }
@@ -18,6 +19,7 @@ const INITIAL_STATE: OperationState = {
   operations: [],
   createOperationDto: {} as CreateOperationRequest,
   updateOperationDto: {} as UpdateOperationRequest,
+  selectedOperation: {} as OperationResponse,
   buttonLoading: false,
   pageLoading: true,
 };
@@ -58,10 +60,14 @@ const operationSlice = createSlice({
     setUpdateOperationDto: (state, action) => {
       state.updateOperationDto = action.payload;
     },
+    setSelectedOperation: (state, action) => {
+      state.selectedOperation = action.payload;
+    },
   },
   extraReducers(builder) {
     builder.addCase(fetchOperations.pending, (state, action) => {
       state.pageLoading = true;
+      state.selectedOperation = {} as OperationResponse;
     });
     builder.addCase(fetchOperations.fulfilled, (state, action) => {
       state.pageLoading = false;

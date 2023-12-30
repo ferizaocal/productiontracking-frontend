@@ -35,3 +35,4 @@ const rootReducer = combineReducers<AppState>({
 export const store = createStore(rootReducer, applyMiddleware(thunk));
 export const persistor = persistStore(store);
 export default rootReducer;
+export type AppDispatch = typeof store.dispatch;

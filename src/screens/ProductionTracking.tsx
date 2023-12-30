@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Animated,
   FlatList,
@@ -22,18 +22,33 @@ import {faGripVertical} from '@fortawesome/free-solid-svg-icons';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppState} from '../store';
 import {AppActions} from '../store/slice/appSlice';
+import OperationMenu from '../components/OperationMenu/OperationMenu';
+import {fetchOperationsByActive} from '../store/slice/operationSlice';
+import Container from '../components/Container/Container';
 
 export default function ProductionTracking(props: any) {
+  const dispatch = useDispatch<any>();
   const {language} = useSelector((state: AppState) => state.app);
-  const dispatch = useDispatch();
   const {listType} = useSelector((state: AppState) => state.app);
+  const operationLoading = useSelector(
+    (state: AppState) => state.operation.pageLoading,
+  );
+
   const [opacity] = useState(new Animated.Value(0));
   const [pageAnimation] = useState(new Animated.Value(1));
   const [isFocused, setIsFocused] = useState<boolean>(false);
+  useEffect(() => {
+    props.navigation.addListener('focus', () => {
+      dispatch(fetchOperationsByActive());
+    });
+  }, []);
 
   const Section = () => {
     return (
       <View>
+        <View style={{marginTop: 15}}>
+          <OperationMenu />
+        </View>
         <View
           style={{
             marginTop: 15,
@@ -67,9 +82,10 @@ export default function ProductionTracking(props: any) {
             </TouchableOpacity>
           </View>
         </View>
+
         <FlatList
           contentInset={{bottom: 90}}
-          style={{zIndex: 3}}
+          style={{zIndex: 3, height: '90%'}}
           contentContainerStyle={{justifyContent: 'space-between'}}
           scrollEventThrottle={16}
           showsHorizontalScrollIndicator={false}
@@ -94,7 +110,9 @@ export default function ProductionTracking(props: any) {
         opacity={opacity}
         navigation={props.navigation}
       />
-      {isFocused ? <SearchResults opacity={opacity} /> : <Section />}
+      <Container isLoading={operationLoading}>
+        {isFocused ? <SearchResults opacity={opacity} /> : <Section />}
+      </Container>
     </SafeAreaView>
   );
 }

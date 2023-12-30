@@ -32,6 +32,8 @@ import Header from '../components/Header/ScreenHeader';
 export default function Settings(props: any) {
   const popoverRef = useRef<any>(null);
   const {language} = useSelector((x: AppState) => x.app);
+  const {roles} = useSelector((x: AppState) => x.role);
+  console.log(roles[0]);
   const dispatch = useDispatch();
   const handleOpenPopover = () => {
     if (popoverRef.current) {

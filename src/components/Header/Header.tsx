@@ -21,6 +21,7 @@ import {
   startInputWidth,
 } from './Animated';
 import MenuSvg from '../../svg/MenuSvg';
+import useThemeColors from '../../constant/useColor';
 
 interface HeaderProps {
   navigation: any;
@@ -38,7 +39,7 @@ export default function Header({
   pageAnimation,
 }: HeaderProps) {
   const inputWidth = useRef(new Animated.Value(100)).current;
-
+  const colors = useThemeColors();
   const searchOpacityButton = useRef(new Animated.Value(0)).current;
   const keyboardHeight = new Value(0);
 
