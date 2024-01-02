@@ -23,6 +23,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppState} from '../../store';
 import {AuthActions} from '../../store/slice/authSlice';
 import TransportSvg from '../../svg/TransportSvg';
+import useThemeColors from '../../constant/useColor';
 interface DrawerButtonProps extends TouchableOpacityProps {
   label: string;
   icon: React.ReactNode;
@@ -59,6 +60,7 @@ const styles = StyleSheet.create({
 const DrawerContent = memo(function MyDrawerContent(
   props: DrawerContentComponentProps,
 ) {
+  const colors = useThemeColors();
   const {language} = useSelector((state: AppState) => state.app);
   const dispatch = useDispatch();
   return (
@@ -69,14 +71,14 @@ const DrawerContent = memo(function MyDrawerContent(
             flex: 0.4,
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: '#D8B267',
+            backgroundColor: colors.drawerContentBgColor,
           },
           drawerContentStyles.shadown,
         ]}></View>
       <View
         style={{
           flex: 1,
-          backgroundColor: '#D8B267',
+          backgroundColor: colors.drawerContentBgColor,
           justifyContent: 'space-between',
           flexDirection: 'column',
         }}>

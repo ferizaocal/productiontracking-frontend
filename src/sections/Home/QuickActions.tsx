@@ -9,8 +9,11 @@ import I18n from '../../lang/_i18n';
 import QuickWidget from './QuickWidget';
 import {AppState} from '../../store';
 import {useSelector} from 'react-redux';
+import useThemeColors from '../../constant/useColor';
+
 export default function QuickActions() {
   const {language} = useSelector((state: AppState) => state.app);
+
   return (
     <View>
       <Label

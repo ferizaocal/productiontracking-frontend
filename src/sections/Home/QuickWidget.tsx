@@ -1,16 +1,18 @@
 import {Pressable, PressableProps} from 'react-native';
 import React from 'react';
 import Label from '../../components/Text/Label';
+import useThemeColors from '../../constant/useColor';
 interface QuickWidgetProps extends PressableProps {
   label: string;
   icon?: any;
 }
 export default function QuickWidget(props: QuickWidgetProps) {
+  const colors = useThemeColors();
   return (
     <Pressable
       {...props}
       style={{
-        backgroundColor: '#D8B267',
+        backgroundColor: colors.primary,
         width: 100,
         height: 80,
         justifyContent: 'center',
@@ -23,7 +25,7 @@ export default function QuickWidget(props: QuickWidgetProps) {
         },
         shadowOpacity: 1,
         shadowRadius: 6,
-        elevation: 2, //android gilge
+        elevation: 2,
       }}>
       {props.icon}
       <Label
@@ -32,7 +34,7 @@ export default function QuickWidget(props: QuickWidgetProps) {
           fontWeight: 'bold',
           textAlign: 'center',
           lineHeight: 15,
-          color: 'white',
+          color: colors.textColor,
         }}
         font="Raleway"
         label={props.label}
